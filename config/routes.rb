@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   
+  get 'users/index'
+  get 'users/show'
+  get 'users/edit'
   root 'home#index'
+  get 'home/show'
+  devise_for :users, controllers: {   registrations: 'users/registrations',
+    sessions: 'users/sessions' }
+  resources :users
   
-  
-  devise_for :users
 
   
 

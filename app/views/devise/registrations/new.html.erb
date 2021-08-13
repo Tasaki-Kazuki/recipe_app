@@ -15,7 +15,8 @@
 
   <div class="field">
     <%= f.label :password %>
-    <% if @minimum_password_length %>
+    <% if @minimum_password_length %>  
+    <%# /Users/tasakikazuki/environment/recipe_app/config/initializers/devise.rbここに@minimum_password_lengthがある %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
