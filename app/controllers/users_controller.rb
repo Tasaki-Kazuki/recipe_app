@@ -9,9 +9,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) # ここにnilが渡ってきてNot Foundのエラーが来る可能性があることに配慮したコードである必要がある
   end
 
-  def edit
-  end
-
   private
 
   def user_params

@@ -2,8 +2,6 @@
 <p>Find me in app/views/users/index.html.erb</p>
 
 <% @users.each do |user| %>
-  <%# <%=user.name%> 
   <%= link_to "#{user.name}", "/users/#{user.id}" %>
-  <%# ユーザー一覧でユーザーの名前にユーザーページをリンクした8/12 %>
   <br>
 <% end %>
