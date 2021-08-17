@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'recipes/index'
+  get 'recipes/show'
+  get 'recipes/edit'
+  get 'recipes/destroy'
   get 'users/index'
   get 'users/show'
   root 'home#index'
