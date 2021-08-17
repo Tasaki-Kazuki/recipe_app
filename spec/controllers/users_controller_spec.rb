@@ -34,7 +34,7 @@ RSpec.describe UsersController, type: :controller do
       # https://qiita.com/Cesaroshun/items/0cc1a47d1c9bf74dec73
       expect {
         get :show # これだけだとユーザIDが渡らないのでエラー
-      }.to raise_error(ActionController::ParameterMissing)
+      }.to raise_error(ActionController::UrlGenerationError)
     end
   end
 end

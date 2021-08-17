@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   resources :resources
   get 'users/index'
   get 'users/show'
+=======
+>>>>>>> 45d776730a3e0bec1f7c35ba4e1a0d50e0921889
   root 'home#index'
   get 'home/show'
   devise_for :users, controllers: { registrations: 'users/registrations',
