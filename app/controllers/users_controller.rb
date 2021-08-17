@@ -13,12 +13,11 @@ class UsersController < ApplicationController
   def edit
     user_params_id
     @user = User.find(params[:id])
-    if @user == current_user
-      render "edit"
-    else
-      flash[:danger] = "他のユーザーの情報は変更できません"
+    unless @user == current_user
       redirect_to "/"
+      return
     end
+    render "edit"
   end
 
   def update
