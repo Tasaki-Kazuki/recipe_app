@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.7'
+gem 'devise'
+# 自分で入れた
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
@@ -40,6 +42,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop', require: false # 追加8/14
 end
 
 group :test do
@@ -51,7 +54,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.6'
+  gem 'rspec-rails', '~> 5.0.0'
+  gem "factory_bot_rails"
 end
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

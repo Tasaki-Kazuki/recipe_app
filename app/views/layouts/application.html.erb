@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>RecipeApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<body>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <header>
+    <nav>
+      <%#=user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド %>
+      <% if user_signed_in? %> 
+        <%#=current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド %>
+        Logged in as <strong><%= current_user.name %></strong>.
+        <%= link_to 'パスワードの変更', edit_user_registration_path %> |
+        <%= link_to 'プロフィールの編集', edit_user_path(id: current_user) %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "サインアップ", new_user_registration_path %> |
+        <%= link_to "ログイン", new_user_session_path %>
+      <% end %>
+    </nav>
+  </header>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+</body>
