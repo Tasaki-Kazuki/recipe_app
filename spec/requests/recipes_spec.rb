@@ -2,31 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "Recipes", type: :request do
   describe "GET /index" do
-    it "returns http success" do
-      get "/recipes/index"
-      expect(response).to have_http_status(:success)
-    end
+    pending "add some examples (or delete) #{__FILE__}"
   end
-
-  describe "GET /show" do
-    it "returns http success" do
-      get "/recipes/show"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /edit" do
-    it "returns http success" do
-      get "/recipes/edit"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /destroy" do
-    it "returns http success" do
-      get "/recipes/destroy"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end

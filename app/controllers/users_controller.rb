@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     # https://railsguides.jp/action_controller_overview.html
     user_params_id
     @user = User.find(params[:id])
+    @recipes = @user.recipes.paginate(page: params[:page]).reverse_order
     # ここにnilが渡ってきてNot Foundのエラーが来る可能性があることに配慮したコードである必要がある
   end
 
