@@ -10,7 +10,7 @@
         <%=f.text_area :body,size: "100x20"%> <br/>
     </div>
 
-    <% if request.path_info = new_recipe_path %>
+    <% if request.path_info == new_recipe_path %>
     <%= f.submit "投稿する", class: "btn btn-primary" %>
 
     <% else %>

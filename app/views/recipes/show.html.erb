@@ -1,7 +1,7 @@
 <h1> <%=@recipe.title%><br> </h1>
 
 <%=@recipe.body%>
-<%if current_user==@recipe.user%>
+<%if current_user == @recipe.user%>
     <%= button_to "レシピの編集","/recipes/#{@recipe.id}/edit",method: :get%>
     <%= button_to "レシピの削除",recipe_path,method: :delete%>
 <%end%>

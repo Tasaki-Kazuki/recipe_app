@@ -6,6 +6,12 @@ gem 'devise'
 # 自分で入れた
 gem 'will_paginate',           '3.1.8'
 gem 'bootstrap-will_paginate', '1.0.0'
+
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
+gem 'kaminari'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
 # Use sqlite3 as the database for Active Record
@@ -33,6 +39,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'faker',                   '2.1.2'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 

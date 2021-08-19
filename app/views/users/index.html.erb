@@ -1,7 +1,9 @@
 <h1>ユーザー一覧</h1>
-
 <% @users.each do |user| %>
   <%= link_to "#{user.name}", "/users/#{user.id}" %>
   <br>
 <% end %>
+<br>
+<br>
+<%= paginate @users %>
 

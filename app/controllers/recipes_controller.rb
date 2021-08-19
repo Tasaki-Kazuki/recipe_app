@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.page(params[:page]).per(10)
   end
 
   def new
@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
     recipe_params_id
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-      flash[:succes] = "レシピの編集を成功しました"
+      flash[:success] = "レシピの編集を成功しました"
       redirect_to recipes_path
     else
       render 'edit'
