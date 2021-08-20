@@ -10,8 +10,8 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.user_id = current_user.id
-    @recipe.save
+    @season = recipe.season.build(season_params)
+    
     redirect_to recipe_path(@recipe)
   end
 
@@ -22,6 +22,7 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    @season = Season.fin
   end
 
   def update
@@ -50,4 +51,8 @@ end
 
 def recipe_params_id
   params.require(:id)
+end
+
+def season_params
+  params.require(:season).permit(:season)
 end
