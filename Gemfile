@@ -4,8 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.7'
 gem 'devise'
 # 自分で入れた
-gem 'will_paginate',           '3.1.8'
-gem 'bootstrap-will_paginate', '1.0.0'
 
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
