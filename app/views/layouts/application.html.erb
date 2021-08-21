@@ -9,14 +9,21 @@
         <%= link_to 'パスワードの変更', edit_user_registration_path %> |
         <%= link_to 'プロフィールの編集', edit_user_path(id: current_user) %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to 'マイページ',user_path(id: current_user)%>
+        <% unless current_page?(new_recipe_path) %>
+          <%= link_to "レシピを投稿する", new_recipe_path %>
+        <%end%>
       <% else %>
         <%= link_to "サインアップ", new_user_registration_path %> |
         <%= link_to "ログイン", new_user_session_path %>
       <% end %>
+      <%= link_to "ユーザー一覧", users_path %>
+      <%= link_to "レシピ一覧", recipes_path %>
     </nav>
   </header>
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+  <%= flash[:success] %>
   <%= yield %>
 </body>

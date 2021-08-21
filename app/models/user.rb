@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :rememberable, :validatable
 
   validates :name, presence: true, length: { maximum: 50 }
+  has_many :recipes, dependent: :destroy
 end
