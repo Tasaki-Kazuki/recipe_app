@@ -2,7 +2,7 @@
 <h3><%=@user.name%>さんのレシピ一覧</h3>
 
 <%@recipes.each do |recipe|%>
-<h3> <%=link_to "#{recipe.title}","/recipes/#{recipe.id}"%></h3>
+<h3> <%=link_to "#{recipe.title}", recipe_path(recipe.id)%></h3>
 <% end %>
 <br>
 <br>
