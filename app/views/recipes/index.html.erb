@@ -1,7 +1,9 @@
 <h1>レシピ一覧</h1>
-
 <% @recipes.each do |recipe|%>
-<h3> <%=link_to "#{recipe.title}","/recipes/#{recipe.id}"%></h3>
-投稿者:<%= link_to "#{recipe.user.name}", "/users/#{recipe.user.id}" %> 
+<h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>
+投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user) %> 
  <br>
 <% end %>
+<br>
+<br>
+<%= paginate @recipes %>

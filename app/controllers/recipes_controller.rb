@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
+  before_action :signed_in_user, only: :new
+  before_action :own_recipe, only: [:edit, :update, :destroy]
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.page(params[:page]).per(10).reverse_order
   end
 
   def new
@@ -9,9 +11,12 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.build(recipe_params)
     @season = recipe.season.build(season_params)
+
     
+    @recipe.save
+
     redirect_to recipe_path(@recipe)
   end
 
@@ -29,7 +34,7 @@ class RecipesController < ApplicationController
     recipe_params_id
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-      flash[:succes] = "レシピの編集を成功しました"
+      flash[:success] = "レシピの編集を成功しました"
       redirect_to recipes_path
     else
       render 'edit'
@@ -44,6 +49,20 @@ class RecipesController < ApplicationController
 end
 
 private
+
+def signed_in_user
+  unless user_signed_in?
+    flash[:danger] = "Please log in."
+    redirect_to sign_in_path
+  end
+end
+
+def own_recipe
+  @recipe = Recipe.find(params[:id])
+  unless @recipe.user == current_user
+    redirect_to "/"
+  end
+end
 
 def recipe_params
   params.require(:recipe).permit(:title, :body)
