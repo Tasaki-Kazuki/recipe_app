@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :signed_in_user, only: :new
+  before_action :own_recipe  ,only:[:edit,:update,:destroy]
   def index
     @recipes = Recipe.page(params[:page]).per(10).reverse_order
   end
@@ -20,12 +22,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
-    unless @recipe.user == current_user
-      redirect_to "/"
-      return
-    end
-    render "edit"
+
   end
 
   def update
@@ -48,10 +45,26 @@ end
 
 private
 
-def recipe_params
-  params.require(:recipe).permit(:title, :body)
-end
+  def signed_in_user
+    unless user_signed_in?
+      flash[:danger] = "Please log in."
+      redirect_to sign_in_path
+    end
+  end
 
-def recipe_params_id
-  params.require(:id)
-end
+  def own_recipe
+    @recipe = Recipe.find(params[:id])
+      unless @recipe.user == current_user
+        redirect_to "/"
+      end
+  end
+
+  def recipe_params
+    params.require(:recipe).permit(:title, :body)
+  end
+
+  def recipe_params_id
+    params.require(:id)
+  end
+
+
