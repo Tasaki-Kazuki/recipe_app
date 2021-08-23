@@ -2,6 +2,7 @@
 
   <header>
     <nav>
+    <h1><%= link_to "レシピっぴ",root_path%></h1>
       <%#=user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド %>
       <% if user_signed_in? %> 
         <%#=current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド %>

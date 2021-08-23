@@ -8,15 +8,14 @@ class RecipesController < ApplicationController
   def new
     # @recipe=current_user.recipes.build(recipe_params)
     @recipe = Recipe.new
-    @season = @recipe.build_season(season_params)
-    
+    @season = @recipe.build_season
   end
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
+
     @season = @recipe.build_season(season_params)
 
-    
     @recipe.save
 
     redirect_to recipe_path(@recipe)
@@ -29,15 +28,16 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    
+    @season = @recipe.build_season
   end
 
   def update
     recipe_params_id
     @recipe = Recipe.find(params[:id])
+    @season = @recipe.build_season(season_params)
     if @recipe.update(recipe_params)
       flash[:success] = "レシピの編集を成功しました"
-      redirect_to recipes_path
+      redirect_to recipe_path(@recipe)
     else
       render 'edit'
     end
@@ -49,33 +49,31 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
+  private
 
-private
-
-def signed_in_user
-  unless user_signed_in?
-    flash[:danger] = "Please log in."
-    redirect_to sign_in_path
+  def signed_in_user
+    unless user_signed_in?
+      flash[:danger] = "Please log in."
+      redirect_to sign_in_path
+    end
   end
-end
 
-def own_recipe
-  @recipe = Recipe.find(params[:id])
-  unless @recipe.user == current_user
-    redirect_to "/"
+  def own_recipe
+    @recipe = Recipe.find(params[:id])
+    unless @recipe.user == current_user
+      redirect_to "/"
+    end
   end
-end
 
-def recipe_params
-  params.require(:recipe).permit(:title, :body)
-end
+  def recipe_params
+    params.require(:recipe).permit(:title, :body, season_attributes: [:season])
+  end
 
-def recipe_params_id
-  params.require(:id)
-end
+  def recipe_params_id
+    params.require(:id)
+  end
 
-def season_params
-  params.permit(:season)
-end
-
+  def season_params
+    params.require(:season).permit(:season)
+  end
 end
