@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_19_024149) do
+ActiveRecord::Schema.define(version: 2021_08_23_134008) do
+
   create_table "recipes", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title"
@@ -22,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_024149) do
   end
 
   create_table "seasons", force: :cascade do |t|
-    t.integer "season"
+    t.integer "season", default: 0
     t.integer "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

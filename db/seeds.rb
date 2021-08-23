@@ -11,7 +11,7 @@ User.create!(name: "Example User",
              password_confirmation: "foobar")
 
 # 追加のユーザーをまとめて生成する
-99.times do |n|
+3.times do |n|
   name  = Faker::Name.name
   email = "example-#{n + 1}@railstutorial.org"
   password = "password"
@@ -31,5 +31,8 @@ User.all.each do |user|
   user.recipes.create!(
     title: 'タイトル',
     body: 'テキストテキストテキストテキスト'
+    
+
   )
 end
+

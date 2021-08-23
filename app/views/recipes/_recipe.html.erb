@@ -7,7 +7,7 @@
     <%=fields_for @season do |s|%>
     <div>
     この料理に合う季節
-        <%=s.select :season,[["指定なし",0],["春",1], ["夏",2], ["秋",3], ["冬",4] ] %>
+        <%=s.select :season,[["指定なし",0],["春",1], ["夏",2], ["秋",3], ["冬",4] ],{selected: 0} %>
     </div>
     <% end %>
     <div class="field">
