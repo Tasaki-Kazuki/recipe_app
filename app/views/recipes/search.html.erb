@@ -1,0 +1,26 @@
+<p>検索</p>
+<%= form_tag(recipes_search_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '料理名検索', :name => nil %>
+<% end %>
+
+<%= form_with(url: recipes_search_path, :method => 'get',local: true) do |f| %>
+  <%=f.select :keyword,[["春",1], ["夏",2], ["秋",3], ["冬",4] ],{selected: 0} %>
+  <%= f.submit "季節検索" %>
+<% end %>
+
+<% @recipes.each do |recipe|%>
+    <h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>
+    投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user) %> 
+    <br>
+    <% end %>
+    </ul>
+    <br>
+    <br>
+    <%= paginate @recipes %>
+
+<%@seasons.each do |season|%>
+<%="#{season.recipe.title}"%>
+<%end%>
+
+

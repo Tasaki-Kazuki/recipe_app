@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :recipes
   root 'home#index'
+  get "/recipes/search", :to =>"recipes#search"
+  resources :recipes
   devise_for :users, controllers: { registrations: 'users/registrations',
                                     sessions: 'users/sessions' }
   resources :users

@@ -49,6 +49,14 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @seasons = Recipe.search(params[:keyword])
+    @recipes = Recipe.search(params[:search]).page(params[:page]).per(5).reverse_order
+    
+  end
+
+
   private
 
   def signed_in_user
