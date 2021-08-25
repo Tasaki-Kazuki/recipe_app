@@ -50,8 +50,7 @@ class RecipesController < ApplicationController
   end
 
   def search
-    #Viewのformで取得したパラメータをモデルに渡す
-    @seasons = Recipe.search(params[:keyword])
+    @seasons = Season.season_search(params[:keyword]).page(params[:page]).per(5).reverse_order
     @recipes = Recipe.search(params[:search]).page(params[:page]).per(5).reverse_order
     
   end

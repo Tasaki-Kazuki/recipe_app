@@ -14,9 +14,6 @@ def self.search(search)
   end
 end
 
-def
-  self.season_search(keyword)
-    Season.where(['season ?',"#{keyword}"])
-end
+
 
 end
