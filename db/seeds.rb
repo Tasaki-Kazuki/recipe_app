@@ -30,9 +30,7 @@ end
 User.all.each do |user|
   user.recipes.create!(
     title: 'タイトル',
-    body: 'テキストテキストテキストテキスト'
-    
-
+    body: 'テキストテキストテキストテキスト',
+    season: 1
   )
 end
-

@@ -8,13 +8,10 @@ class RecipesController < ApplicationController
   def new
     # @recipe=current_user.recipes.build(recipe_params)
     @recipe = Recipe.new
-    @season = @recipe.build_season
   end
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
-
-    @season = @recipe.build_season(season_params)
 
     @recipe.save
 
@@ -23,18 +20,15 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    # @recipe.user_id=current_user.id
   end
 
   def edit
     @recipe = Recipe.find(params[:id])
-    @season = @recipe.build_season
   end
 
   def update
     recipe_params_id
     @recipe = Recipe.find(params[:id])
-    @season = @recipe.build_season(season_params)
     if @recipe.update(recipe_params)
       flash[:success] = "レシピの編集を成功しました"
       redirect_to recipe_path(@recipe)
@@ -73,14 +67,10 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :body, season_attributes: [:season])
+    params.require(:recipe).permit(:title, :body, :season)
   end
 
   def recipe_params_id
     params.require(:id)
-  end
-
-  def season_params
-    params.require(:season).permit(:season)
   end
 end
