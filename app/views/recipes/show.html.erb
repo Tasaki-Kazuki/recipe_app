@@ -1,23 +1,8 @@
 <h1> <%=@recipe.title%><br> </h1>
 
 季節:
-<% if @recipe.season.season == 0%>
-指定なし
-<% end %>
-<% if @recipe.season.season == 1%>
-春
-<% end %>
-<% if @recipe.season.season == 2%>
-夏
-<% end %>
-<% if @recipe.season.season == 3%>
-秋
-<% end %>
-<% if @recipe.season.season == 4%>
-冬
-<% end %>
-<br><%=@recipe.body%>
-
+<%=@recipe.season_i18n%><br>
+<%=@recipe.body%>
 <%if current_user == @recipe.user%>
     <%= button_to "レシピの編集",edit_recipe_path,method: :get%>
     <%= button_to "レシピの削除",recipe_path,method: :delete%>
