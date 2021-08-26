@@ -3,18 +3,23 @@
     <div class="field">
         <%= f.label :title %><br />
         <%= f.text_field :title%>
+        この料理に合う季節
+        
+        <%= f.select :season, options_for_select_from_enum(Recipe, :season)%>
     </div>
-
+    
     <div class="field">
         <%=f.label :body%> <br />
         <%=f.text_area :body,size: "100x20"%> <br/>
     </div>
 
+    
+
     <% if request.path_info == new_recipe_path %>
     <%= f.submit "投稿する", class: "btn btn-primary" %>
 
     <% else %>
-    <%= f.submit "編集を完了する", class: "btn btn-primary" %>
+        <%= f.submit "編集を完了する", class: "btn btn-primary" %>
 
 <%end%>
 

@@ -12,16 +12,18 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
+
     @recipe.save
+
     redirect_to recipe_path(@recipe)
   end
 
   def show
     @recipe = Recipe.find(params[:id])
-    # @recipe.user_id=current_user.id
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
   end
 
   def update
@@ -29,7 +31,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
       flash[:success] = "レシピの編集を成功しました"
-      redirect_to recipes_path
+      redirect_to recipe_path(@recipe)
     else
       render 'edit'
     end
@@ -40,28 +42,28 @@ class RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipes_path
   end
-end
 
-private
+  private
 
-def signed_in_user
-  unless user_signed_in?
-    flash[:danger] = "Please log in."
-    redirect_to sign_in_path
+  def signed_in_user
+    unless user_signed_in?
+      flash[:danger] = "Please log in."
+      redirect_to sign_in_path
+    end
   end
-end
 
-def own_recipe
-  @recipe = Recipe.find(params[:id])
-  unless @recipe.user == current_user
-    redirect_to "/"
+  def own_recipe
+    @recipe = Recipe.find(params[:id])
+    unless @recipe.user == current_user
+      redirect_to "/"
+    end
   end
-end
 
-def recipe_params
-  params.require(:recipe).permit(:title, :body)
-end
+  def recipe_params
+    params.require(:recipe).permit(:title, :body, :season)
+  end
 
-def recipe_params_id
-  params.require(:id)
+  def recipe_params_id
+    params.require(:id)
+  end
 end
