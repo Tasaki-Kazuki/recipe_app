@@ -11,6 +11,7 @@ def self.search(search)
   else
     Recipe.all
   end
+
 end
   
 def self.seasonsearch(seasonsearch)
