@@ -4,11 +4,26 @@
   <%= text_field_tag :search %>
   <%= submit_tag '料理名検索', :name => nil %>
 <% end %>
+
+<h3>ユーザーを検索する</h3>
+<%= form_tag(recipes_search_path,:method => 'get') do %>
+  <%= text_field_tag :usersearch %>
+  <%= submit_tag 'ユーザー検索', :name => nil %>
+<% end %>
+
 <h3>季節にあった料理を検索する</h3>
 <%= form_tag(recipes_search_path,:method => 'get') do %>
   <%= select_tag :seasonsearch ,options_for_select([["春",1], ["夏",2], ["秋",3], ["冬",4] ]) %>
   <%= submit_tag '季節検索', :name => nil %>
 <% end %>
+
+<% unless  @users.nil? %>
+  <% @users.each do |user|%>
+    <h3> <%=link_to "#{user.name}",user_path(user)%></h3>
+    
+  <%end%>
+<%end%>
+
 <% unless @recipes.nil? %>
   <% @recipes.each do |recipe|%>
           <h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>

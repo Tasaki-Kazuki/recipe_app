@@ -46,8 +46,11 @@ class RecipesController < ApplicationController
   def search
     if params[:search]
       @recipes = Recipe.search(params[:search]).page(params[:page]).per(5).reverse_order
-    else
+    
+    elsif params[:seasonsearch]
       @recipes = Recipe.seasonsearch(params[:seasonsearch]).page(params[:page]).per(5).reverse_order
+    elsif params[:usersearch]
+      @users = User.usersearch(params[:usersearch]).page(params[:page]).per(5).reverse_order
     end
   end
 
