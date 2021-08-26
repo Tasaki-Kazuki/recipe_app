@@ -1,9 +1,10 @@
-<p>検索</p>
+<h1>レシピ検索</h1>
+<h3>料理名検索する</h3>
 <%= form_tag(recipes_search_path,:method => 'get') do %>
   <%= text_field_tag :search %>
   <%= submit_tag '料理名検索', :name => nil %>
 <% end %>
-
+<h3>季節にあった料理を検索する</h3>
 <%= form_tag(recipes_search_path,:method => 'get') do %>
   <%= select_tag :seasonsearch ,options_for_select([["春",1], ["夏",2], ["秋",3], ["冬",4] ]) %>
   <%= submit_tag '季節検索', :name => nil %>
