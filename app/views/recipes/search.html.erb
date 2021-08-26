@@ -22,6 +22,7 @@
     <h3> <%=link_to "#{user.name}",user_path(user)%></h3>
     
   <%end%>
+  <%= paginate @users %>
 <%end%>
 
 <% unless @recipes.nil? %>
