@@ -20,6 +20,4 @@ class Recipe < ApplicationRecord
       Recipe.all
     end
   end
-
- 
 end
