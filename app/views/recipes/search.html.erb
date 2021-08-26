@@ -4,27 +4,18 @@
   <%= submit_tag '料理名検索', :name => nil %>
 <% end %>
 
-<%= form_with(url: recipes_search_path, :method => 'get',local: true) do |f| %>
-  <%=f.select :keyword,[["春",1], ["夏",2], ["秋",3], ["冬",4] ],{selected: nil} %>
-  <%= f.submit "季節検索" %>
+<%= form_tag(recipes_search_path,:method => 'get') do %>
+  <%= select_tag :seasonsearch ,options_for_select([["春",1], ["夏",2], ["秋",3], ["冬",4] ]) %>
+  <%= submit_tag '季節検索', :name => nil %>
 <% end %>
-
-<% unless @recipes ==Recipe.all %>
-    <%@seasons.each do |season|%>
-        <h3><%=link_to "#{season.recipe.title}",recipe_path(season.recipe)%></h3>
-        投稿者:<%= link_to "#{season.recipe.user.name}", user_path(season.recipe.user) %> 
-    <%end%>
-    
+<% unless @recipes.nil? %>
+  <% @recipes.each do |recipe|%>
+          <h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>
+          投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user) %> 
+          <br>
+          <% end %>
+          </ul>
+          <br>
+          <br>
+          <%= paginate @recipes %>
 <%end%>
-
-
-<% @recipes.each do |recipe|%>
-        <h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>
-        投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user) %> 
-        <br>
-        <% end %>
-        </ul>
-        <br>
-        <br>
-        <%= paginate @recipes %>
-
