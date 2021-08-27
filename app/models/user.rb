@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
   has_many :recipes, dependent: :destroy
+  has_many :favorites_list,  through: :favorites, source: :recipe
 
   def self.usersearch(usersearch)
     if usersearch
@@ -14,4 +15,10 @@ class User < ApplicationRecord
       User.all
     end
   end
+
+  def favorite(recipe)
+    :favorites_list <<recipe
+
+  end
+
 end
