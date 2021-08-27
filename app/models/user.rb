@@ -7,9 +7,9 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   has_many :recipes, dependent: :destroy
 
-  def self.usersearch(usersearch)
-    if usersearch
-      User.where(['name LIKE ?', "%#{usersearch}%"])
+  def self.user_search(user_search)
+    if user_search
+      User.where(['name LIKE ?', "%#{user_search}%"])
     else
       User.all
     end
