@@ -3,7 +3,16 @@
 季節:
 <%=@recipe.season_i18n%><br>
 <%=@recipe.body%>
+
+<% if current_user.already_added_favorites?(@recipe)%>
+    <%= button_to "お気に入りから削除する", recipe_favorites_path(@recipe), method: :delete%>
+
+<% else %>
+    <%= button_to "お気に入りに追加する", recipe_favorites_path(@recipe), method: :post%>
+<% end %>
+
 <%if current_user == @recipe.user%>
     <%= button_to "レシピの編集",edit_recipe_path,method: :get%>
     <%= button_to "レシピの削除",recipe_path,method: :delete%>
+
 <%end%>
