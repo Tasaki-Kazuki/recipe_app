@@ -58,7 +58,6 @@ class RecipesController < ApplicationController
     @favorite_recipes = current_user.favorite_recipes.includes(:user).order(created_at: :desc)
   end
 
-  
   private
 
   def signed_in_user

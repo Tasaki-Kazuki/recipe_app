@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   root 'home#index'
   get "/recipes/search", :to => "recipes#search"
+  get "/favorites/index", :to => "favorites#index"
   # get "/users/:id/favorites/index", :to => "favorites#index"
   resources :recipes do
-    resource :favorites, only: [:create,:destroy]
+    resource :favorites, only: [:create, :destroy]
   end
   devise_for :users, controllers: { registrations: 'users/registrations',
                                     sessions: 'users/sessions' }
-  resources :users 
+  resources :users
   devise_scope :user do
     get "sign_in", :to => "users/sessions#new"
     get "/users/sign_out", :to => "users/sessions#destroy"

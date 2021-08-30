@@ -19,6 +19,4 @@ class User < ApplicationRecord
   def already_added_favorites?(recipe)
     self.favorites.exists?(recipe_id: recipe.id)
   end
-
 end
-
