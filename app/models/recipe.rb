@@ -5,17 +5,17 @@ class Recipe < ApplicationRecord
   validates :body, presence: true
   enum season: { unspecified: 0, spring: 1, summer: 2, fall: 3, winter: 4 }
   validates :season, presence: true
-  def self.title_search(title_search)
-    if title_search
-      Recipe.where(['title LIKE ?', "%#{title_search}%"])
+  def self.title_search(recipe_title_to_search)
+    if recipe_title_to_search
+      Recipe.where(['title LIKE ?', "%#{recipe_title_to_search}%"])
     else
       Recipe.all
     end
   end
 
-  def self.season_search(season_search)
-    if season_search
-      Recipe.where(season: season_search)
+  def self.season_search(season_to_search)
+    if season_to_search
+      Recipe.where(season: season_to_search)
     else
       Recipe.all
     end
