@@ -43,6 +43,17 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
+  def search
+    if params[:recipe_title_to_search]
+      @recipes = Recipe.title_search(params[:recipe_title_to_search]).page(params[:page]).per(5).reverse_order
+
+    elsif params[:season_to_search]
+      @recipes = Recipe.season_search(params[:season_to_search]).page(params[:page]).per(5).reverse_order
+    elsif params[:user_name_to_search]
+      @users = User.user_search(params[:user_name_to_search]).page(params[:page]).per(5).reverse_order
+    end
+  end
+
   private
 
   def signed_in_user

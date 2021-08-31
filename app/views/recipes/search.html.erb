@@ -1,0 +1,38 @@
+<h1>レシピ検索</h1>
+<h3>料理名検索する</h3>
+<%= form_tag(recipes_search_path,:method => 'get') do %>
+  <%= text_field_tag :recipe_title_to_search %>
+  <%= submit_tag '料理名検索', :name => nil %>
+<% end %>
+
+<h3>ユーザーを検索する</h3>
+<%= form_tag(recipes_search_path,:method => 'get') do %>
+  <%= text_field_tag :user_name_to_search %>
+  <%= submit_tag 'ユーザー検索', :name => nil %>
+<% end %>
+
+<h3>季節にあった料理を検索する</h3>
+<%= form_tag(recipes_search_path,:method => 'get') do %>
+  <%= select_tag :season_to_search ,options_for_select([["春",1], ["夏",2], ["秋",3], ["冬",4] ]) %>
+  <%= submit_tag '季節検索', :name => nil %>
+<% end %>
+
+<% unless  @users.nil? %>
+  <% @users.each do |user|%>
+    <h3> <%=link_to "#{user.name}",user_path(user)%></h3>
+    
+  <%end%>
+  <%= paginate @users %>
+<%end%>
+
+<% unless @recipes.nil? %>
+  <% @recipes.each do |recipe|%>
+          <h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>
+          投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user) %> 
+          <br>
+          <% end %>
+          </ul>
+          <br>
+          <br>
+          <%= paginate @recipes %>
+<%end%>
