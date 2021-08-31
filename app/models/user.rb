@@ -8,9 +8,9 @@ class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  def self.usersearch(usersearch)
-    if usersearch
-      User.where(['name LIKE ?', "%#{usersearch}%"])
+  def self.user_search(user_name_to_search)
+    if user_name_to_search
+      User.where(['name LIKE ?', "%#{user_name_to_search}%"])
     else
       User.all
     end
