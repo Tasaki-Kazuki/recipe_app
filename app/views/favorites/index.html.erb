@@ -1,0 +1,20 @@
+<h1>お気に入り登録したレシピ一覧</h1>
+<%unless @favorites_list.empty?%>
+    <% @favorites_list.each do |recipe|%>
+    <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+    <h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>
+
+    <br>
+    投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user) %> 
+    </div>
+    <br>
+    <%end%>
+<%= paginate @favorites_list %>
+<%else%>
+    お気に入り登録したレシピはありません
+
+<%end%>
+<br>
+<br>
+<br>
+
