@@ -3,8 +3,7 @@ class FavoritesController < ApplicationController
 
   def index
     current_user_favorites = Favorite.where(user_id: current_user.id).pluck(:recipe_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
-    @favorites_list = Recipe.find(current_user_favorites)
-    @favorites_list = Kaminari.paginate_array(@favorites_list).page(params[:page]).per(10)
+    @favorites_list = Recipe.where(id: current_user_favorites).page(params[:page]).per(10)
   end
 
   def create
