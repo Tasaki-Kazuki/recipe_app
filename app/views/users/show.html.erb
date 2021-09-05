@@ -4,7 +4,7 @@
 <% @recipes.each do |recipe|%>
 <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
 <h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>
-<%=recipe.favorites.count%>人がお気に入りに追加しました
+<%=recipe.favorites.size%>人がお気に入りに追加しました
 
 </div>
  <br>

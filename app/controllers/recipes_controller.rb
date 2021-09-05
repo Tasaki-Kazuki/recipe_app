@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :signed_in_user, only: :new
   before_action :own_recipe, only: [:edit, :update, :destroy]
   def index
-    @recipes = Recipe.page(params[:page]).per(10).reverse_order
+    @recipes = Recipe.all.includes(:user,:favorites).page(params[:page]).per(10).reverse_order
   end
 
   def new
@@ -45,10 +45,10 @@ class RecipesController < ApplicationController
 
   def search
     if params[:recipe_title_to_search]
-      @recipes = Recipe.title_search(params[:recipe_title_to_search]).page(params[:page]).per(5).reverse_order
+      @recipes = Recipe.title_search(params[:recipe_title_to_search]).includes(:user,:favorites).page(params[:page]).per(5).reverse_order
 
     elsif params[:season_to_search]
-      @recipes = Recipe.season_search(params[:season_to_search]).page(params[:page]).per(5).reverse_order
+      @recipes = Recipe.season_search(params[:season_to_search]).includes(:user,:favorites).page(params[:page]).per(5).reverse_order
     elsif params[:user_name_to_search]
       @users = User.user_search(params[:user_name_to_search]).page(params[:page]).per(5).reverse_order
     end
