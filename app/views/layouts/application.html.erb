@@ -1,32 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                               'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </head>
 <body>
-
-  <header>
-    <nav>
-    <h1><%= link_to "レシピっぴ",root_path%></h1>
-      <%#=user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド %>
-      <% if user_signed_in? %> 
-        <%#=current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド %>
-        Logged in as <strong><%= current_user.name %></strong>.
-        <%= link_to 'パスワードの変更', edit_user_registration_path %> |
-        <%= link_to 'プロフィールの編集', edit_user_path(id: current_user) %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <%= link_to 'マイページ',user_path(id: current_user)%>
-        <%= link_to 'お気に入り登録レシピ一覧',favorites_index_path(id: current_user)%>
-        <% unless current_page?(new_recipe_path) %>
-          <%= link_to "レシピを投稿する", new_recipe_path %>
-        <%end%>
-      <% else %>
-        <%= link_to "サインアップ", new_user_registration_path %> |
-        <%= link_to "ログイン", new_user_session_path %>
-      <% end %>
-      <%= link_to "ユーザー一覧", users_path %>
-      <%= link_to "レシピ一覧", recipes_path %>
-      <%= link_to "レシピ検索", recipes_search_path %>
-    </nav>
-  </header>
-
+<%=render 'layouts/header'%>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= flash[:success] %>
   <%= yield %>
 </body>
+</html>
