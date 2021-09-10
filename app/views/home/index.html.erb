@@ -1,12 +1,15 @@
-<h1>ようこそレシピ投稿サイト<font color=”blue”>レシピっぴ</font>へ</h1>
-<p></p>
-<h2>↓最近投稿されたレシピ</h2>
-<% @recipes.each do |recipe|%>
-    <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>
-    <%=recipe.favorites.size%>人がお気に入りに追加しました
-    <br>
-    投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user) %> 
-    </div>
-    <br>
+<div class='container'>
+    <h1 class="text-center">ようこそレシピ投稿"サイトレシピっぴ"へ</h1>
+    <h2 class="text-center">↓最近投稿されたレシピ</h2>
+    <% @recipes.each do |recipe|%>
+            <div class='bg-dark text-white mt-3'>
+                <div class='row'>
+                    <div class='col-auto '><h2><%=link_to "#{recipe.title}",recipe_path(recipe),class:"link"%></h2></div>
+                </div>
+                <div class='row'>
+                <div class='col-md-3'>投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user),class:"link" %></div>
+                <div class='col'><%=recipe.favorites.size%>人がお気に入りに追加しました</div>
+                </div>
+            </div>
     <% end %>
+</div>
