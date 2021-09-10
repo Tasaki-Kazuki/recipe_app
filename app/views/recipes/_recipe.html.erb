@@ -1,25 +1,27 @@
 <%=form_with(model: @recipe) do |f| %>
 
-    <div class="field">
-        <%= f.label :title %><br />
-        <%= f.text_field :title%>
-        この料理に合う季節
-        
-        <%= f.select :season, options_for_select_from_enum(Recipe, :season)%>
-    </div>
     
-    <div class="field">
-        <%=f.label :body%> <br />
-        <%=f.text_area :body,size: "100x20"%> <br/>
-    </div>
+        <div class="field">
+            <h4 class='col'><%= f.label :title,"レシピ名"%></h4>
+            <div class='col'><%= f.text_field :title%><br></div>
+        </div>
+
+        <div class='field'>
+            <h4 class='col'>この料理に合う季節</h4>
+            <div class='form-control-lg'><%= f.select :season, options_for_select_from_enum(Recipe, :season)%></div>
+        </div>
+        <div class="field">
+            <h4 class='col'><%=f.label :body,"レシピの詳細"%></h4>
+            <div class='col'><%=f.text_area :body,size: "100x10"%></div>
+        </div>
 
     
 
     <% if request.path_info == new_recipe_path %>
-    <%= f.submit "投稿する", class: "btn btn-primary" %>
+    <div class='col'><%= f.submit "投稿する", class: "btn btn-primary" %></div>
 
     <% else %>
-        <%= f.submit "編集を完了する", class: "btn btn-primary" %>
+        <div class='col'><%= f.submit "編集を完了する", class: "btn btn-primary" %></div>
 
 <%end%>
 

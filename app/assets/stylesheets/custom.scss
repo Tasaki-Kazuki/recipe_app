@@ -8,3 +8,17 @@
     text-decoration: none;
     color: white ; 
 }
+
+/*ページネーション自体のデザイン*/
+.pagination>li>a {          
+    color: #696969;   /*文字の色を変える*/
+  }
+  
+  /* 表示しているページ番号のデザイン */
+  .pagination>.active>a {     
+    background: #000002;     /*背景の色を変える*/
+  }
+  
+.center{
+  text-align: center;
+}

@@ -1,41 +1,63 @@
-<h1>レシピ検索</h1>
-<h3>料理名検索する</h3>
-<%= form_tag(recipes_search_path,:method => 'get') do %>
-  <%= text_field_tag :recipe_title_to_search %>
-  <%= submit_tag '料理名検索', :name => nil %>
-<% end %>
-
-<h3>ユーザーを検索する</h3>
-<%= form_tag(recipes_search_path,:method => 'get') do %>
-  <%= text_field_tag :user_name_to_search %>
-  <%= submit_tag 'ユーザー検索', :name => nil %>
-<% end %>
-
-<h3>季節にあった料理を検索する</h3>
-<%= form_tag(recipes_search_path,:method => 'get') do %>
-  <%= select_tag :season_to_search ,options_for_select([["春",1], ["夏",2], ["秋",3], ["冬",4] ]) %>
-  <%= submit_tag '季節検索', :name => nil %>
-<% end %>
-
-<% unless  @users.nil? %>
-  <% @users.each do |user|%>
-    <h3> <%=link_to "#{user.name}",user_path(user)%></h3>
-    
-  <%end%>
-  <%= paginate @users %>
-<%end%>
-
-<% unless @recipes.nil? %>
-  <% @recipes.each do |recipe|%>
-    <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <h3> <%=link_to "#{recipe.title}",recipe_path(recipe)%></h3>
-    <%=recipe.favorites.size%>人がお気に入りに追加しました
-    <br>
-    投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user) %> 
-    </div>
-    <br>
+<div class='container'>
+  <div class='center'>
+    <h1>レシピ検索</h1>
+    <%= form_tag(recipes_search_path,:method => 'get') do %>
+      <h4>料理名で検索する</h4>
+      <div class='row'>
+        <div class='col'>
+          <%= text_field_tag :recipe_title_to_search%>
+          <%= submit_tag '料理名検索', :name => nil ,class: 'btn btn-primary'%>
+        </div>
+      </div>
     <% end %>
-  <br>
-  <br>
-<%= paginate @recipes %>
-<%end%>
+    
+    <%= form_tag(recipes_search_path,:method => 'get') do %>
+    <h4>ユーザー名で検索する</h4>
+      <div class='row'>
+        <div class='col'>
+          <%= text_field_tag :user_name_to_search%>
+          <%= submit_tag 'ユーザー検索', :name => nil,class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+    
+    <%= form_tag(recipes_search_path,:method => 'get') do %>
+      <h4>季節にあった料理を検索する</h4>
+      <div class='row'>
+        <div class='col'>
+          <%= select_tag :season_to_search ,options_for_select([["春",1], ["夏",2], ["秋",3], ["冬",4] ]),{class:'form-select md-3'} %>
+          <%= submit_tag '季節検索', :name => nil,class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+    
+  </div>
+  <% unless  @users.nil? %>
+    <%= paginate @users %>
+    <% @users.each do |user|%>
+      <div class='bg-dark text-white mt-3'>
+        <div class='row'>
+          <div class='col'><h3> <%=link_to "#{user.name}",user_path(user),class:"link"%></h3></div>
+        </div>
+      </div>
+  
+    <%end%>
+  <%end%>
+  
+  <% unless @recipes.nil? %>
+    <%= paginate @recipes %>
+    <% @recipes.each do |recipe|%>
+      
+            <div class='bg-dark text-white mt-3'>
+                <div class='row'>
+                    <div class='col-auto '><h2><%=link_to "#{recipe.title}",recipe_path(recipe),class:"link"%></h2></div>
+                </div>
+                <div class='row'>
+                <div class='col-md-3'>投稿者:<%= link_to "#{recipe.user.name}", user_path(recipe.user),class:"link" %></div>
+                <div class='col'><%=recipe.favorites.size%>人がお気に入りに追加しました</div>
+                </div>
+            </div>
+    <% end %>
+  
+  <%end%>
+</div>

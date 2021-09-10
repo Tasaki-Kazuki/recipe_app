@@ -1,9 +1,12 @@
-<h1>ユーザー一覧</h1>
-<% @users.each do |user| %>
-  <%= link_to "#{user.name}", user_path(user) %> 
-  <br>
-<% end %>
-<br>
-<br>
-<%= paginate @users %>
-
+<div class='container text-center'>
+  <h1>ユーザー一覧</h1>
+  <%= paginate @users %>
+      <% @users.each do |user|%>
+        <div class='bg-dark text-white mt-3'>
+          <div class='row'>
+            <div class='col'><h3> <%=link_to "#{user.name}",user_path(user),class:"link"%></h3></div>
+          </div>
+        </div>
+  <% end %>
+  
+</div>
