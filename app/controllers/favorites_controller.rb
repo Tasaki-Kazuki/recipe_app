@@ -2,7 +2,7 @@ class FavoritesController < ApplicationController
   before_action :signed_in_user, only: [:index, :create, :destroy]
 
   def index
-    current_user_favorites = Favorite.where(user_id: current_user.id).pluck(:recipe_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
+    current_user_favorites = Favorite.where(user_id: current_user.id).pluck(:recipe_id)
     @favorites_list = Recipe.where(id: current_user_favorites).includes(:user).page(params[:page]).per(10)
   end
 

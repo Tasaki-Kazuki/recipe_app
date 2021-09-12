@@ -2,11 +2,11 @@ class RecipesController < ApplicationController
   before_action :signed_in_user, only: :new
   before_action :own_recipe, only: [:edit, :update, :destroy]
   def index
-    @recipes = Recipe.all.includes(:user, :favorites).page(params[:page]).per(10).reverse_order
+    @recipes = Recipe.all.includes(:user,
+                                   :favorites).page(params[:page]).per(10).reverse_order
   end
 
   def new
-    # @recipe=current_user.recipes.build(recipe_params)
     @recipe = Recipe.new
   end
 

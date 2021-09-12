@@ -1,16 +1,19 @@
-<h3>プロフィール編集ページ</h3>
-  <%= form_with(model: @user, local: true) do |f| %>
+<div class='container text-center'>
+  <h3>プロフィール編集ページ</h3>
+    <%= form_with(model: @user, local: true) do |f| %>
   
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-<%= f.submit 'プロフィール編集を完了する', class: 'btn btn-primary' %></div>
-
-
-<% end %>
+    <div class="field">
+      <%= f.label :email,"メールアドレス" %>
+      <div clas='col'><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+    </div>
+  
+    <div class="field">
+      <%= f.label :name,"名前" %>
+      <div clas='col'><%= f.text_field :name, autofocus: true, autocomplete: "name" %></div>
+    </div>
+    
+    <div clas='col'><%= f.submit 'プロフィール編集を完了する', class: 'btn btn-primary' %></div>
+  
+  
+  <% end %>
+</div>
